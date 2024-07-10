@@ -1,0 +1,46 @@
+1. CREATE (n:Company {name: 'AutomotiveX',description: "Founded in 1995, AutoMotiveX quickly emerged as a pioneer in the automotive industry, known for its dedication to innovation and excellence. Headquartered in the heart of Detroit, Michigan, the company has revolutionized car manufacturing with its cutting-edge technology and sustainable practices. AutoMotiveX's flagship models, including the Speedster 2000, EcoRide 3000, and FamilyWagon 4000, have set new standards in performance, efficiency, and safety. With a team of over 10,000 skilled professionals led by CEO John Doe, AutoMotiveX continues to push the boundaries of what is possible, delivering vehicles that not only meet but exceed customer expectations. Their commitment to quality and customer satisfaction has earned them numerous awards and a loyal customer base worldwide." })
+
+2.Create (n: Car {name: 'model1', description: "The Speedster 2000 is designed for those who crave excitement and performance. This sports car offers a blend of power, agility, and advanced technology, making it a top choice for enthusiasts who appreciate a thrilling driving experience. With its state-of-the-art engineering and high-end features, the Speedster 2000 sets a new benchmark in the sports car segment."})
+
+3. Create (n: Car {name: 'model2', description: "The EcoRide 3000 caters to the environmentally conscious driver who refuses to compromise on performance. This hybrid vehicle combines fuel efficiency with innovative design, providing a smooth and economical ride. The EcoRide 3000 is equipped with the latest green technologies, making it an excellent choice for those looking to reduce their carbon footprint while enjoying a modern driving experience." })
+
+4. Create (n: Car {name: 'model3', description: "The FamilyWagon 4000 is the ideal vehicle for families, offering a perfect blend of comfort, space, and safety. Designed with family needs in mind, this car provides ample room for passengers and cargo, advanced safety features, and a comfortable ride for long journeys. The FamilyWagon 4000 ensures that every family trip is enjoyable and secure, making it a reliable companion for everyday use and road trips alike."})
+
+5. Create (n: Color {name:'Black', description: "Black is the epitome of sophistication and elegance. It offers a timeless and classic look that exudes luxury and power. A car in Black presents a sleek and polished appearance, making it an excellent choice for those who prefer a refined and understated style."})
+
+6. Create (n: Color {name:'Red', description: "Available in both Crimson and Cherry red"})
+
+7. Create (n: Color {name:'White', description: "White symbolizes purity, simplicity, and modernity. It gives a clean and fresh description to any vehicle, highlighting its design lines and features. A car in White offers a versatile and contemporary appearance, suitable for a wide range of preferences and tastes."})
+
+8. CREATE (n: ColorGradient {name: 'Crimson Red',description: "Crimson Red is a vibrant and bold shade that exudes energy and passion. It captures attention and adds a sense of dynamism and flair to any car, making a powerful statement on the road."})
+
+9. CREATE (n: ColorGradient {name: 'Cherry Red',description: "Cherry Red is a slightly softer and more playful variant of red, offering a touch of elegance and warmth. This gradient provides a lively and youthful description, perfect for those who want to make a stylish impression."})
+
+10. CREATE (price:Price {description: "The Speedster 2000 is priced at $60,000, offering high performance and cutting-edge features. The EcoRide 3000, known for its eco-friendly design and fuel efficiency, is available for $35,000. For those descriptioning for a spacious and safe family car, the FamilyWagon 4000 is priced at $45,000, providing ample room and advanced safety features."})
+
+11. MATCH (company:Company)
+MATCH (car: Car)
+MERGE (car)-[:MANUFACTURED_BY]->(company)
+
+12. MATCH (c:Car {name:'model1'})
+MATCH (co: Color)
+MERGE (c)-[:AVAILABLE_IN]->(co)
+
+13. MATCH (c:Car {name:'model2'})
+MATCH (co: Color {name: 'White'})
+MATCH (c1: Color {name: 'Black'})
+MERGE (c)-[:AVAILABLE_IN]->(co)
+MERGE (c)-[:AVAILABLE_IN]->(c1)
+
+14. MATCH (c:Car {name:'model3'})
+MATCH (co: Color {name: 'Red'})
+MERGE (c)-[:AVAILABLE_IN]->(co)
+
+15. MATCH (c: Color {name:'Red'})
+MATCH (g: ColorGradient)
+MERGE (c)-[:SHADES]->(g)
+
+16. MATCH (c:Car) 
+MATCH (p:Price)
+MERGE (n)-[:COSTS]->(p)
+
